@@ -89,11 +89,8 @@ while cont:
     previous1 = t1
     t0 = get_tmp0(learningRate, previous0, previous1, lst)
     t1 = get_tmp1(learningRate, previous0, previous1, lst)
-    if (abs(previous0 - t0) < 0.000000000000001 and abs(previous1 - t1) < 0.00000000000001):
+    if (abs(previous0 - t0) < 0.000000000001 and abs(previous1 - t1) < 0.00000000001):
         cont = False
-    print("t0 : " + str(previous0))
-    print("t1 : " + str(previous1))
-
 t0 = max * t0
 
 print ("t0 : " + str(t0))

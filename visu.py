@@ -3,13 +3,12 @@
 import sys
 import csv
 import matplotlib.pyplot as plt
-import numpy as np
 
 def estimatePrice(t0, t1, mileage):
 	return (t0 + t1 * mileage)
 
-t0 = 0.0
-t1 = -0.99999999999
+t0 = 8499.59349202
+t1 = -0.0214489050367
 
 if (len(sys.argv) != 2):
 	print("Usage : ./visu.py filename")
