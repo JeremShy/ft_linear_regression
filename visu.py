@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 def estimatePrice(t0, t1, mileage):
 	return (t0 + t1 * mileage)
 
-t0 = 8499.59349202
-t1 = -0.0214489050367
+t0 = 0
+t1 = 0
 
 if (len(sys.argv) != 2):
 	print("Usage : ./visu.py filename")
@@ -29,8 +29,23 @@ for r in reader:
 		k, v = r
 		data[float(k)] = float(v)  
 
-p1 = [0, 300000];
-p2 = [t0, t0 + t1 * 300000]
-plt.plot(p1, p2, marker = 'o')
+xmin = min(data.keys());
+xmax = max(data.keys());
+
+diff = (xmax - xmin) / 8
+xmin -= diff;
+xmax += diff;
+
+print xmin
+print xmax
+
+p1 = [xmin, xmax];
+p2 = [t0 + t1 * xmin, t0 + t1 * xmax]
+
+fig, ax1 = plt.subplots()
+
 plt.plot(data.keys(), data.values(), 'ro')
+
+plt.plot(p1, p2, marker = 'o', scalex=False, scaley=False)
+
 plt.show()

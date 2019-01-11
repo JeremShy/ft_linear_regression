@@ -69,17 +69,11 @@ if (max == 0):
 	print("Error !")
 	sys.exit(0)
 
-print ("Max : " + str(max));
-
-print ("maxx : " + str(maxx))
-print ("maxy : " + str(maxy))
-
 xs = list(map(lambda x: x / max, xs))
 ys = list(map(lambda x: x / max, ys))
 
 lst = dict(zip(xs, ys))
 
-print lst
 learningRate = 0.001
 t0 = 0.0
 t1 = 0.0
@@ -89,7 +83,7 @@ while cont:
     previous1 = t1
     t0 = get_tmp0(learningRate, previous0, previous1, lst)
     t1 = get_tmp1(learningRate, previous0, previous1, lst)
-    if (abs(previous0 - t0) < 0.000000000001 and abs(previous1 - t1) < 0.00000000001):
+    if (abs(previous0 - t0) < 0.0000001 and abs(previous1 - t1) < 0.0000001):
         cont = False
 t0 = max * t0
 
