@@ -26,18 +26,18 @@ for r in reader:
 	if (first == False):
 		first = True
 	else:
-		k, v = r
-		data[float(k)] = float(v)  
+		try:
+			k, v = r
+			data[float(k)] = float(v)
+		except :
+			pass
 
 xmin = min(data.keys());
 xmax = max(data.keys());
 
-diff = (xmax - xmin) / 8
+diff = (xmax - xmin) / 4
 xmin -= diff;
 xmax += diff;
-
-print xmin
-print xmax
 
 p1 = [xmin, xmax];
 p2 = [t0 + t1 * xmin, t0 + t1 * xmax]
@@ -45,7 +45,6 @@ p2 = [t0 + t1 * xmin, t0 + t1 * xmax]
 fig, ax1 = plt.subplots()
 
 plt.plot(data.keys(), data.values(), 'ro')
-
 plt.plot(p1, p2, marker = 'o', scalex=False, scaley=False)
 
 plt.show()

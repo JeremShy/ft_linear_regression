@@ -48,8 +48,11 @@ for r in reader:
 	if (first == False):
 		first = True
 	else:
-		k, v = r
-		lst[float(k)] = float(v)
+		try:
+			k, v = r
+			lst[float(k)] = float(v)
+		except:
+			pass
 
 xs = lst.keys()
 ys = lst.values()
@@ -74,7 +77,9 @@ ys = list(map(lambda x: x / max, ys))
 
 lst = dict(zip(xs, ys))
 
-learningRate = 0.001
+print "Starting linear regression"
+
+learningRate = 0.1
 t0 = 0.0
 t1 = 0.0
 cont = True
@@ -83,8 +88,9 @@ while cont:
     previous1 = t1
     t0 = get_tmp0(learningRate, previous0, previous1, lst)
     t1 = get_tmp1(learningRate, previous0, previous1, lst)
-    if (abs(previous0 - t0) < 0.0000001 and abs(previous1 - t1) < 0.0000001):
+    if (abs(previous0 - t0) < 0.000001 and abs(previous1 - t1) < 0.000001):
         cont = False
+
 t0 = max * t0
 
 print ("t0 : " + str(t0))
