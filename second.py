@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 
 import sys
@@ -36,7 +36,7 @@ filename = sys.argv[1]
 #
 #
 try:
-	csvfile = open(filename, 'rb')
+	csvfile = open(filename, 'r')
 except:
 	print("Error opening " + filename)
 	sys.exit(0)
@@ -77,11 +77,13 @@ ys = list(map(lambda x: x / max, ys))
 
 lst = dict(zip(xs, ys))
 
-print "Starting linear regression"
+print("Starting linear regression")
 
 learningRate = 0.1
-t0 = 0.0
-t1 = 0.0
+
+t0 = 0
+t1 = 1
+
 cont = True
 while cont:
     previous0 = t0
@@ -96,17 +98,6 @@ t0 = max * t0
 print ("t0 : " + str(t0))
 print ("t1 : " + str(t1))
 
-file = open('first.py', 'r')
-filedata = file.read()
-filedata = filedata.replace('t0 = 0', 't0 = ' + str(t0))
-filedata = filedata.replace('t1 = 0', 't1 = ' + str(t1))
+file = open('coef.py', 'w')
 
-file2 = open('visu.py', 'r')
-filedata2 = file2.read()
-filedata2 = filedata2.replace('t0 = 0', 't0 = ' + str(t0))
-filedata2 = filedata2.replace('t1 = 0', 't1 = ' + str(t1))
-
-file = open('first.py', 'w')
-file2 = open('visu.py', 'w')
-file.write(filedata)
-file2.write(filedata2)
+file.write('{ "t0":' + str(t0) + ', "t1":' + str(t1) + '}')
